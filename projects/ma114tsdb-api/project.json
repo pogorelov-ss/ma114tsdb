@@ -1,0 +1,59 @@
+{
+  "name": "ma114tsdb-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "projects/ma114tsdb-api/src",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv build",
+        "cwd": "projects/ma114tsdb-api"
+      },
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pytest tests/",
+        "cwd": "projects/ma114tsdb-api"
+      },
+      "dependsOn": ["build"],
+      "cache": true
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "python -m ma114tsdb_api",
+        "cwd": "projects/ma114tsdb-api"
+      },
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "python -m pylint src/",
+        "cwd": "projects/ma114tsdb-api"
+      },
+      "cache": true
+    },
+    "deploy-infra": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd cdk && cdk deploy --all",
+        "cwd": "projects/ma114tsdb-api"
+      },
+      "dependsOn": ["^deploy-infra"]
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "kubectl apply -f k8s/",
+        "cwd": "projects/ma114tsdb-api"
+      },
+      "dependsOn": ["build", "deploy-infra"]
+    }
+  },
+  "tags": ["type:application", "scope:api"]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "dev_testing_utils",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "projects/dev_testing_utils/src",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv build",
+        "cwd": "projects/dev_testing_utils"
+      },
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pytest tests/",
+        "cwd": "projects/dev_testing_utils"
+      },
+      "dependsOn": ["build"],
+      "cache": true
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "python -m pylint src/",
+        "cwd": "projects/dev_testing_utils"
+      },
+      "cache": true
+    }
+  },
+  "tags": ["type:dev-tools", "scope:testing"]
+}
