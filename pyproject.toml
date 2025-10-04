@@ -23,7 +23,7 @@ dev-dependencies = [
 ]
 
 [tool.uv.workspace]
-members = ["components/*", "bases/*", "projects/*"]
+members = []
 
 [build-system]
 requires = ["hatchling"]

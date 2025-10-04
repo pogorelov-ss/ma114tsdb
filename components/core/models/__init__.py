@@ -1,5 +1,6 @@
 """Core data models for ma114tsdb time-series system."""
 
+from ..versioning import Version
 from .trace_context import TraceContext
 from .datastream import DataStream
 from .event import Event
@@ -27,6 +28,7 @@ from .pipeline_config import (
 )
 
 __all__ = [
+    "Version",
     "TraceContext",
     "DataStream",
     "Event",
