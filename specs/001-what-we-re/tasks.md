@@ -46,7 +46,7 @@
 
 ## Phase 3.1: Setup & Workspace Initialization
 
-### T001 [P] Initialize Polylith workspace
+### T001 [X] Initialize Polylith workspace
 Create Polylith workspace structure with `workspace.toml` configuration.
 ```bash
 # At repository root
@@ -57,7 +57,7 @@ polylith create workspace ma114tsdb --python
 **Dependencies**: None
 **Validation**: `polylith check` passes
 
-### T002 [P] Configure uv workspace with pyproject.toml
+### T002 [X] Configure uv workspace with pyproject.toml
 Create root `pyproject.toml` with workspace dependencies and Python 3.11+ requirement.
 ```toml
 [project]
@@ -79,7 +79,7 @@ dependencies = [
 **Dependencies**: None
 **Validation**: `uv pip list` shows all dependencies
 
-### T003 [P] Initialize NX workspace
+### T003 [X] Initialize NX workspace
 Create `nx.json` and root `project.json` for NX task orchestration.
 ```json
 // nx.json
@@ -111,7 +111,7 @@ Create `nx.json` and root `project.json` for NX task orchestration.
 **Dependencies**: None
 **Validation**: `nx show projects` lists workspace
 
-### T004 [P] Create Polylith component directories
+### T004 [X] Create Polylith component directories
 Create directory structure for all Polylith components.
 ```bash
 mkdir -p components/core/{models,interfaces,versioning}
@@ -123,7 +123,7 @@ mkdir -p components/serialization/msgpack
 **Path**: `/home/pss/AIExperiments/ma114tsdb/components/`
 **Dependencies**: T001 (Polylith workspace)
 
-### T005 [P] Create Polylith bases and projects directories
+### T005 [X] Create Polylith bases and projects directories
 Create directory structure for bases and projects.
 ```bash
 mkdir -p bases/{api,runtime}
@@ -135,7 +135,7 @@ mkdir -p projects/{dev_local_cluster,dev_testing_utils}
 **Path**: `/home/pss/AIExperiments/ma114tsdb/{bases,projects}/`
 **Dependencies**: T001 (Polylith workspace)
 
-### T006 [P] Create test directories
+### T006 [X] Create test directories
 Create test directory structure for contract, integration, and unit tests.
 ```bash
 mkdir -p test/{contract,integration,unit}
@@ -143,7 +143,7 @@ mkdir -p test/{contract,integration,unit}
 **Path**: `/home/pss/AIExperiments/ma114tsdb/test/`
 **Dependencies**: None
 
-### T007 [P] Configure pytest with pytest.ini
+### T007 [X] Configure pytest with pytest.ini
 Create `pytest.ini` with async support and test discovery settings.
 ```ini
 [pytest]
@@ -156,7 +156,7 @@ asyncio_mode = auto
 **File**: `/home/pss/AIExperiments/ma114tsdb/pytest.ini`
 **Dependencies**: T002 (uv workspace with pytest)
 
-### T008 [P] Create .gitignore
+### T008 [X] Create .gitignore
 Create `.gitignore` for Python, NX, and Polylith artifacts.
 ```
 __pycache__/
@@ -174,7 +174,7 @@ dist/
 
 ## Phase 3.2: NX Project Configurations
 
-### T009 [P] Create ma114tsdb-runtime project.json
+### T009 [X] Create ma114tsdb-runtime project.json
 Create NX project configuration for runtime project.
 ```json
 {
@@ -202,12 +202,12 @@ Create NX project configuration for runtime project.
 **File**: `/home/pss/AIExperiments/ma114tsdb/projects/ma114tsdb-runtime/project.json`
 **Dependencies**: T003 (NX workspace), T005 (project directories)
 
-### T010 [P] Create ma114tsdb-api project.json
+### T010 [X] Create ma114tsdb-api project.json
 Create NX project configuration for API project.
 **File**: `/home/pss/AIExperiments/ma114tsdb/projects/ma114tsdb-api/project.json`
 **Dependencies**: T003, T005
 
-### T011 [P] Create inf_core_network project.json
+### T011 [X] Create inf_core_network project.json
 Create NX project configuration for core network infrastructure.
 ```json
 {
@@ -227,17 +227,17 @@ Create NX project configuration for core network infrastructure.
 **File**: `/home/pss/AIExperiments/ma114tsdb/projects/inf_core_network/project.json`
 **Dependencies**: T003, T005
 
-### T012 [P] Create inf_core_storage project.json
+### T012 [X] Create inf_core_storage project.json
 Create NX project configuration for core storage infrastructure.
 **File**: `/home/pss/AIExperiments/ma114tsdb/projects/inf_core_storage/project.json`
 **Dependencies**: T003, T005
 
-### T013 [P] Create inf_shared_monitoring project.json
+### T013 [X] Create inf_shared_monitoring project.json
 Create NX project configuration for shared monitoring infrastructure.
 **File**: `/home/pss/AIExperiments/ma114tsdb/projects/inf_shared_monitoring/project.json`
 **Dependencies**: T003, T005
 
-### T014 [P] Create dev_local_cluster project.json
+### T014 [X] Create dev_local_cluster project.json
 Create NX project configuration for local k3d cluster development project.
 ```json
 {
@@ -257,7 +257,7 @@ Create NX project configuration for local k3d cluster development project.
 **File**: `/home/pss/AIExperiments/ma114tsdb/projects/dev_local_cluster/project.json`
 **Dependencies**: T003, T005
 
-### T015 [P] Create dev_testing_utils project.json
+### T015 [X] Create dev_testing_utils project.json
 Create NX project configuration for development testing utilities.
 **File**: `/home/pss/AIExperiments/ma114tsdb/projects/dev_testing_utils/project.json`
 **Dependencies**: T003, T005
@@ -290,7 +290,7 @@ Create K8s manifests for Prometheus, Grafana in `projects/inf_shared_monitoring/
 
 ## Phase 3.4: Core Data Models (Tests First - TDD)
 
-### T020 [P] Create Version model in components/core/versioning
+### T020 [X] Create Version model in components/core/versioning
 Implement `Version` dataclass with `is_compatible()` method and pydantic validation.
 ```python
 @dataclass
@@ -308,7 +308,7 @@ class Version:
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/versioning/version.py`
 **Dependencies**: T004 (component directories), T002 (pydantic dependency)
 
-### T021 [P] Create TraceContext model in components/core/models
+### T021 [X] Create TraceContext model in components/core/models
 Implement `TraceContext` dataclass with `create_child_span()` method.
 ```python
 @dataclass
@@ -327,27 +327,27 @@ class TraceContext:
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/models/trace_context.py`
 **Dependencies**: T004, T002
 
-### T022 [P] Create DataStream model with pydantic validation
+### T022 [X] Create DataStream model with pydantic validation
 Implement `DataStream` dataclass with all fields from data-model.md and pydantic validators.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/models/datastream.py`
 **Dependencies**: T004, T002, T020 (Version), T021 (TraceContext)
 
-### T023 [P] Create Event model with pydantic validation
+### T023 [X] Create Event model with pydantic validation
 Implement `Event` dataclass with all fields from data-model.md and pydantic validators.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/models/event.py`
 **Dependencies**: T004, T002, T020, T021
 
-### T024 [P] Create AdapterMetadata model
+### T024 [X] Create AdapterMetadata model
 Implement `AdapterMetadata`, `AdapterCapabilities`, `AdapterType`, `DataType` enums and dataclasses.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/models/adapter_metadata.py`
 **Dependencies**: T004, T002, T020
 
-### T025 [P] Create RoutingInfo and SubscriptionPattern models
+### T025 [X] Create RoutingInfo and SubscriptionPattern models
 Implement `RoutingInfo` and `SubscriptionPattern` for transport abstraction.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/models/routing.py`
 **Dependencies**: T004, T002
 
-### T026 [P] Create PipelineConfig and DLQConfig models
+### T026 [X] Create PipelineConfig and DLQConfig models
 Implement `PipelineConfig`, `PipelineRuntimeConfig`, `DLQConfig`, `ErrorPolicy` for pipeline configuration.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/models/config.py`
 **Dependencies**: T004, T002
@@ -361,7 +361,7 @@ Implement `Result`, `HealthStatus`, `AdapterState` enum for adapter lifecycle.
 
 ## Phase 3.5: Adapter Interface Definitions
 
-### T028 [P] Create IAdapter base interface in components/core/interfaces
+### T028 [X] Create IAdapter base interface in components/core/interfaces
 Implement `IAdapter` protocol with `init()`, `start()`, `stop()`, `health()`, `metadata` property.
 ```python
 class IAdapter(Protocol):
@@ -376,22 +376,22 @@ class IAdapter(Protocol):
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/interfaces/adapter.py`
 **Dependencies**: T004, T024 (AdapterMetadata), T027 (Result, HealthStatus)
 
-### T029 [P] Create IProducer interface
+### T029 [X] Create IProducer interface
 Implement `IProducer` protocol extending `IAdapter` with `produce()` async generator.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/interfaces/producer.py`
 **Dependencies**: T004, T028 (IAdapter), T022 (DataStream), T023 (Event)
 
-### T030 [P] Create IConsumer interface
+### T030 [X] Create IConsumer interface
 Implement `IConsumer` protocol extending `IAdapter` with `consume()` method.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/interfaces/consumer.py`
 **Dependencies**: T004, T028, T022, T023
 
-### T031 [P] Create IProcessor interface
+### T031 [X] Create IProcessor interface
 Implement `IProcessor` protocol extending `IAdapter` with `process()` method (returns None for filtering).
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/interfaces/processor.py`
 **Dependencies**: T004, T028, T022, T023
 
-### T032 [P] Create ITransport interface
+### T032 [X] Create ITransport interface
 Implement `ITransport` protocol with `publish()`, `subscribe()`, `ack()`, `declare()` methods.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/core/interfaces/transport.py`
 **Dependencies**: T004, T028, T022, T023, T025 (RoutingInfo, SubscriptionPattern)
@@ -400,7 +400,7 @@ Implement `ITransport` protocol with `publish()`, `subscribe()`, `ack()`, `decla
 
 ## Phase 3.6: Contract Tests (MUST FAIL Initially - TDD)
 
-### T033 [P] Contract test for IAdapter interface
+### T033 [X] Contract test for IAdapter interface
 Create contract test base class in `test/contract/test_adapter_contract.py` that validates:
 - `init()` with valid config succeeds
 - Lifecycle transitions: init → start → stop
@@ -410,7 +410,7 @@ Create contract test base class in `test/contract/test_adapter_contract.py` that
 **Dependencies**: T028 (IAdapter), T007 (pytest config)
 **Expected**: FAILS (no implementations yet)
 
-### T034 [P] Contract test for IProducer interface
+### T034 [X] Contract test for IProducer interface
 Create contract test that validates:
 - `produce()` yields DataStream or Event
 - All data includes TraceContext and Version
@@ -419,7 +419,7 @@ Create contract test that validates:
 **Dependencies**: T029 (IProducer), T007
 **Expected**: FAILS (no implementations yet)
 
-### T035 [P] Contract test for IConsumer interface
+### T035 [X] Contract test for IConsumer interface
 Create contract test that validates:
 - `consume()` processes data without blocking pipeline
 - Returns Result with success/failure
@@ -428,7 +428,7 @@ Create contract test that validates:
 **Dependencies**: T030 (IConsumer), T007
 **Expected**: FAILS (no implementations yet)
 
-### T036 [P] Contract test for IProcessor interface
+### T036 [X] Contract test for IProcessor interface
 Create contract test that validates:
 - `process()` transforms data or returns None (filter)
 - Creates new span_id, preserves trace_id
@@ -437,7 +437,7 @@ Create contract test that validates:
 **Dependencies**: T031 (IProcessor), T007
 **Expected**: FAILS (no implementations yet)
 
-### T037 [P] Contract test for ITransport interface
+### T037 [X] Contract test for ITransport interface
 Create contract test that validates:
 - `publish()` handles DataStream (lossy) and Event (durable) differently
 - `subscribe()` returns async iterator
@@ -478,7 +478,7 @@ Create unit tests for Event field validation (UUID, timestamps, event_type, etc.
 
 ## Phase 3.7: Observability Components
 
-### T042 [P] Create Prometheus metrics collector in components/observability/metrics
+### T042 [X] Create Prometheus metrics collector in components/observability/metrics
 Implement metrics collection for adapters:
 - `events_processed` (Counter)
 - `events_failed` (Counter)
@@ -488,27 +488,27 @@ Implement metrics collection for adapters:
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/observability/metrics/prometheus_collector.py`
 **Dependencies**: T004, T002 (prometheus-client dependency)
 
-### T043 [P] Create structlog logger configuration in components/observability/logging
+### T043 [X] Create structlog logger configuration in components/observability/logging
 Implement structured logging with JSON/EDN formatters and automatic context injection (timestamp, level, adapter_id).
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/observability/logging/structured_logger.py`
 **Dependencies**: T004, T002 (structlog dependency)
 
-### T044 [P] Create trace propagator in components/observability/tracing
+### T044 [X] Create trace propagator in components/observability/tracing
 Implement trace context propagation with automatic span creation.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/observability/tracing/trace_propagator.py`
 **Dependencies**: T004, T021 (TraceContext)
 
-### T045 [P] Unit tests for Prometheus metrics collector
+### T045 [X] Unit tests for Prometheus metrics collector
 Test metric collection (counter increment, histogram recording, gauge set).
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_prometheus_collector.py`
 **Dependencies**: T042, T007
 
-### T046 [P] Unit tests for structured logging
+### T046 [X] Unit tests for structured logging
 Test log formatting (JSON output, context binding, adapter_id injection).
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_structured_logger.py`
 **Dependencies**: T043, T007
 
-### T047 [P] Unit tests for trace propagation
+### T047 [X] Unit tests for trace propagation
 Test span creation (trace_id preservation, parent_span linkage).
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_trace_propagator.py`
 **Dependencies**: T044, T007
@@ -517,7 +517,7 @@ Test span creation (trace_id preservation, parent_span linkage).
 
 ## Phase 3.8: Serialization (MessagePack)
 
-### T048 [P] Create MessagePack serializer in components/serialization/msgpack
+### T048 [X] Create MessagePack serializer in components/serialization/msgpack
 Implement envelope-based serialization with version and trace_context:
 ```python
 envelope = {
@@ -530,7 +530,7 @@ envelope = {
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/serialization/msgpack/serializer.py`
 **Dependencies**: T004, T002 (msgpack dependency), T020 (Version), T021 (TraceContext)
 
-### T049 [P] Unit tests for MessagePack serialization
+### T049 [X] Unit tests for MessagePack serialization
 Test serialization/deserialization with version compatibility checks.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_msgpack_serializer.py`
 **Dependencies**: T048, T007
@@ -539,63 +539,63 @@ Test serialization/deserialization with version compatibility checks.
 
 ## Phase 3.9: Transport Implementations
 
-### T050 [P] Implement Memory transport in components/transports/memory
+### T050 [X] Implement Memory transport in components/transports/memory
 Implement in-memory transport with best-effort delivery using Python queues.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/transports/memory/transport.py`
 **Dependencies**: T004, T032 (ITransport), T048 (serializer)
 
-### T051 [P] Contract test for Memory transport
+### T051 [X] Contract test for Memory transport
 Run transport contract tests against Memory implementation (should PASS now).
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/contract/test_memory_transport.py`
 **Dependencies**: T050, T037 (transport contract test)
 **Expected**: PASSES (Memory transport implements ITransport)
 
-### T052 Unit tests for Memory transport
+### T052 [X] Unit tests for Memory transport
 Test in-memory queue operations, buffer overflow handling.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_memory_transport.py`
 **Dependencies**: T050, T007
 
-### T053 Implement IPC transport in components/transports/ipc
+### T053 [X] Implement IPC transport in components/transports/ipc
 Implement Unix domain socket transport using AWS Greengrass Python SDK.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/transports/ipc/transport.py`
 **Dependencies**: T004, T032, T048, T050 (reference implementation)
 
-### T054 Contract test for IPC transport
+### T054 [X] Contract test for IPC transport
 Run transport contract tests against IPC implementation.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/contract/test_ipc_transport.py`
 **Dependencies**: T053, T037
 
-### T055 Unit tests for IPC transport
+### T055 [X] Unit tests for IPC transport
 Test socket creation, path resolution, connection handling.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_ipc_transport.py`
 **Dependencies**: T053, T007
 
-### T056 Implement MQTT transport in components/transports/mqtt
+### T056 [X] Implement MQTT transport in components/transports/mqtt
 Implement MQTT transport using AWS Greengrass Python SDK with QoS 0 (DataStream) and QoS 1 (Event).
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/transports/mqtt/transport.py`
 **Dependencies**: T004, T032, T048, T050
 
-### T057 Contract test for MQTT transport
+### T057 [X] Contract test for MQTT transport
 Run transport contract tests against MQTT implementation.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/contract/test_mqtt_transport.py`
 **Dependencies**: T056, T037
 
-### T058 Unit tests for MQTT transport
+### T058 [X] Unit tests for MQTT transport
 Test topic wildcards (+, #), QoS levels, connection handling.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_mqtt_transport.py`
 **Dependencies**: T056, T007
 
-### T059 Implement Kombu transport in components/transports/kombu
+### T059 [X] Implement Kombu transport in components/transports/kombu
 Implement Kombu transport for AMQP, Redis, SQS with configurable backends.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/transports/kombu/transport.py`
 **Dependencies**: T004, T032, T048, T050, T002 (kombu dependency)
 
-### T060 Contract test for Kombu transport
+### T060 [X] Contract test for Kombu transport
 Run transport contract tests against Kombu implementation.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/contract/test_kombu_transport.py`
 **Dependencies**: T059, T037
 
-### T061 Unit tests for Kombu transport
+### T061 [X] Unit tests for Kombu transport
 Test exchange declaration, routing keys, persistent delivery mode.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_kombu_transport.py`
 **Dependencies**: T059, T007
