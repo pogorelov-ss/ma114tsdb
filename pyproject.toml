@@ -1,0 +1,30 @@
+[project]
+name = "ma114tsdb"
+version = "1.0.0"
+description = "Modular time-series data acquisition system with pluggable adapter architecture"
+readme = "README.md"
+authors = [
+    { name = "Sergii Pogorielov", email = "pogorelov.ss@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "kombu>=5.3.0",
+    "msgpack>=1.0.0",
+    "pydantic>=2.0.0",
+    "prometheus-client>=0.19.0",
+    "structlog>=24.0.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "hypothesis>=6.0.0",
+]
+
+[tool.uv.workspace]
+members = ["components/*", "bases/*", "projects/*"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

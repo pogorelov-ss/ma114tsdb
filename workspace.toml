@@ -1,0 +1,34 @@
+# Polylith Workspace Configuration
+# ma114tsdb - Time-Series Data Acquisition System
+
+[workspace]
+name = "ma114tsdb"
+version = "1.0.0"
+
+[workspace.structure]
+components = "components"
+bases = "bases"
+projects = "projects"
+development = "development"
+test = "test"
+
+[workspace.settings]
+# Component discovery
+component_pattern = "components/**"
+base_pattern = "bases/**"
+project_pattern = "projects/**"
+
+# Testing
+test_pattern = "test/**"
+test_runner = "pytest"
+
+# Build
+build_system = "uv"
+package_manager = "uv"
+
+[workspace.defaults]
+# Default Python version for all components
+python_version = "3.11"
+
+# Default test framework
+test_framework = "pytest"
