@@ -634,12 +634,12 @@ Test pipeline data flow, processor ordering, consumer parallelism.
 
 ## Phase 3.11: Configuration Loader
 
-### T066 Create TOML configuration loader in components/pipeline/config
+### T066 [X] Create TOML configuration loader in components/pipeline/config
 Implement configuration file parser with pydantic validation for `PipelineConfig`.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/pipeline/config/config_loader.py`
 **Dependencies**: T004, T026 (PipelineConfig), T002 (pydantic)
 
-### T067 Unit tests for configuration loader
+### T067 [X] Unit tests for configuration loader
 Test TOML parsing, validation errors, pipeline config structure.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_config_loader.py`
 **Dependencies**: T066, T007
@@ -648,7 +648,7 @@ Test TOML parsing, validation errors, pipeline config structure.
 
 ## Phase 3.12: Development Projects
 
-### T068 [P] Create dev_local_cluster k3d setup script
+### T068 [P][X] Create dev_local_cluster k3d setup script
 Create bash script to create k3d cluster with Prometheus and Grafana.
 ```bash
 # create-cluster.sh
@@ -660,7 +660,7 @@ k3d cluster create ma114tsdb-dev \
 **File**: `/home/pss/AIExperiments/ma114tsdb/projects/dev_local_cluster/scripts/create-cluster.sh`
 **Dependencies**: T014 (dev_local_cluster project.json)
 
-### T069 [P] Create dev_testing_utils mock adapters
+### T069 [P][X] Create dev_testing_utils mock adapters
 Create mock producer, consumer, processor adapters for testing.
 - `mock_temp_sensor.py` - Temperature sensor producer
 - `mock_flaky_consumer.py` - Consumer with configurable failure rate
@@ -668,12 +668,12 @@ Create mock producer, consumer, processor adapters for testing.
 **Files**: `/home/pss/AIExperiments/ma114tsdb/projects/dev_testing_utils/src/mock_*.py`
 **Dependencies**: T015 (dev_testing_utils project.json), T029-T031 (adapter interfaces)
 
-### T070 [P] Create dev_testing_utils console logger adapter
+### T070 [P][X] Create dev_testing_utils console logger adapter
 Create console logger consumer for quickstart scenarios.
 **File**: `/home/pss/AIExperiments/ma114tsdb/projects/dev_testing_utils/src/console_logger.py`
 **Dependencies**: T015, T030 (IConsumer)
 
-### T071 [P] Create dev_testing_utils DLQ inspector tool
+### T071 [P][X] Create dev_testing_utils DLQ inspector tool
 Create CLI tool to inspect Dead Letter Queue entries.
 ```bash
 python -m ma114tsdb.tools.dlq_inspector dlq/
@@ -729,7 +729,7 @@ Implement test matrix for N-1 version compatibility.
 
 ## Phase 3.14: Bases (Application Entry Points)
 
-### T080 Create runtime base in bases/runtime
+### T080 [X] Create runtime base in bases/runtime
 Implement main entry point for pipeline runtime that loads config and starts pipeline.
 ```python
 async def main(config_path: str):
@@ -740,7 +740,7 @@ async def main(config_path: str):
 **File**: `/home/pss/AIExperiments/ma114tsdb/bases/runtime/main.py`
 **Dependencies**: T063 (pipeline engine), T066 (config loader)
 
-### T081 Create API base in bases/api
+### T081 [X] Create API base in bases/api
 Implement FastStream API entry point for observability queries (future v2.0 runtime API).
 **File**: `/home/pss/AIExperiments/ma114tsdb/bases/api/main.py`
 **Dependencies**: T002 (faststream dependency), T042 (metrics)
@@ -749,12 +749,12 @@ Implement FastStream API entry point for observability queries (future v2.0 runt
 
 ## Phase 3.15: Project Packaging
 
-### T082 Package ma114tsdb-runtime project
+### T082 [X] Package ma114tsdb-runtime project
 Create `src/` with runtime application using runtime base + all components.
 **Directory**: `/home/pss/AIExperiments/ma114tsdb/projects/ma114tsdb-runtime/src/`
 **Dependencies**: T080 (runtime base), all components (T020-T067)
 
-### T083 Package ma114tsdb-api project
+### T083 [X] Package ma114tsdb-api project
 Create `src/` with API application using api base + observability components.
 **Directory**: `/home/pss/AIExperiments/ma114tsdb/projects/ma114tsdb-api/src/`
 **Dependencies**: T081 (api base), T042-T044 (observability)
