@@ -604,7 +604,7 @@ Test exchange declaration, routing keys, persistent delivery mode.
 
 ## Phase 3.10: Pipeline Runtime & Lifecycle
 
-### T062 Create adapter lifecycle manager in components/pipeline/lifecycle
+### T062 [X] Create adapter lifecycle manager in components/pipeline/lifecycle
 Implement state machine with exponential backoff (1s, 5s, 30s) and circuit breaker.
 ```python
 class AdapterLifecycle:
@@ -615,17 +615,17 @@ class AdapterLifecycle:
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/pipeline/lifecycle/adapter_lifecycle.py`
 **Dependencies**: T004, T028 (IAdapter), T027 (AdapterState)
 
-### T063 Create pipeline runtime engine in components/pipeline/runtime
+### T063 [X] Create pipeline runtime engine in components/pipeline/runtime
 Implement pipeline execution: Producer → Transport → Processor → Transport → Consumer.
 **File**: `/home/pss/AIExperiments/ma114tsdb/components/pipeline/runtime/pipeline_engine.py`
 **Dependencies**: T004, T028-T032 (all interfaces), T062 (lifecycle manager)
 
-### T064 Unit tests for adapter lifecycle manager
+### T064 [X] Unit tests for adapter lifecycle manager
 Test state transitions, exponential backoff delays, circuit breaker after 3 failures.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_adapter_lifecycle.py`
 **Dependencies**: T062, T007
 
-### T065 Unit tests for pipeline runtime engine
+### T065 [X] Unit tests for pipeline runtime engine
 Test pipeline data flow, processor ordering, consumer parallelism.
 **File**: `/home/pss/AIExperiments/ma114tsdb/test/unit/test_pipeline_engine.py`
 **Dependencies**: T063, T007
