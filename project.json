@@ -1,0 +1,36 @@
+{
+  "name": "ma114tsdb-root",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": ".",
+  "targets": {
+    "test-all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pytest test/",
+        "cwd": "."
+      }
+    },
+    "build-all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv build",
+        "cwd": "."
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Linting all Python files...' && python -m pylint components/ bases/ projects/ || true",
+        "cwd": "."
+      }
+    },
+    "graph": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx graph"
+      }
+    }
+  },
+  "tags": ["scope:workspace"]
+}

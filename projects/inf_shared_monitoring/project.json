@@ -1,0 +1,35 @@
+{
+  "name": "inf_shared_monitoring",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "projects/inf_shared_monitoring",
+  "targets": {
+    "deploy-infra": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd cdk && cdk deploy --all --require-approval never",
+        "cwd": "projects/inf_shared_monitoring"
+      },
+      "dependsOn": ["^deploy-infra"],
+      "cache": false
+    },
+    "deploy-k8s": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "kubectl apply -f k8s/",
+        "cwd": "projects/inf_shared_monitoring"
+      },
+      "cache": false
+    },
+    "synth": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd cdk && cdk synth",
+        "cwd": "projects/inf_shared_monitoring"
+      },
+      "outputs": ["{projectRoot}/cdk/cdk.out"],
+      "cache": true
+    }
+  },
+  "tags": ["type:infrastructure", "scope:shared", "tier:monitoring"]
+}

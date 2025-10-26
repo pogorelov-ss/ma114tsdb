@@ -1,0 +1,34 @@
+{
+  "name": "inf_core_network",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "projects/inf_core_network",
+  "targets": {
+    "deploy-infra": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd cdk && cdk deploy --all --require-approval never",
+        "cwd": "projects/inf_core_network"
+      },
+      "cache": false
+    },
+    "synth": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd cdk && cdk synth",
+        "cwd": "projects/inf_core_network"
+      },
+      "outputs": ["{projectRoot}/cdk/cdk.out"],
+      "cache": true
+    },
+    "destroy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd cdk && cdk destroy --all --force",
+        "cwd": "projects/inf_core_network"
+      },
+      "cache": false
+    }
+  },
+  "tags": ["type:infrastructure", "scope:core", "tier:foundation"]
+}

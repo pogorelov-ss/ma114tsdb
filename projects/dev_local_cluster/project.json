@@ -1,0 +1,33 @@
+{
+  "name": "dev_local_cluster",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "projects/dev_local_cluster",
+  "targets": {
+    "setup": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash scripts/setup-k3d-cluster.sh",
+        "cwd": "projects/dev_local_cluster"
+      },
+      "cache": false
+    },
+    "teardown": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bash scripts/teardown-k3d-cluster.sh",
+        "cwd": "projects/dev_local_cluster"
+      },
+      "cache": false
+    },
+    "status": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "k3d cluster list && kubectl cluster-info",
+        "cwd": "projects/dev_local_cluster"
+      },
+      "cache": false
+    }
+  },
+  "tags": ["type:dev-tools", "scope:development"]
+}

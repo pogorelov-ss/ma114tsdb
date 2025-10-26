@@ -1,0 +1,17 @@
+{
+  "name": "ma114tsdb",
+  "version": "1.0.0",
+  "description": "Modular time-series data acquisition system with pluggable adapter architecture",
+  "license": "MIT",
+  "scripts": {
+    "test": "nx run-many --target=test --all",
+    "build": "nx run-many --target=build --all",
+    "lint": "nx run-many --target=lint --all",
+    "graph": "nx graph",
+    "affected:test": "nx affected --target=test",
+    "affected:build": "nx affected --target=build"
+  },
+  "devDependencies": {
+    "nx": "^20.3.2"
+  }
+}
